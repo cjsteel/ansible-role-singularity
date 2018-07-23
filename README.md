@@ -66,7 +66,7 @@ cd roles/singularity
 vagrant up
 ```
 
-## Authors and Contributors
+## Contributors
 
 - [Christopher Steel](http://mcin-cnim.ca/) | [e-mail](mailto:christopher.steel@mcgill.ca)
 - [John Le](http://mcin-cnim.ca/) | [e-mail](mailto:john.le@mcgill.ca)
