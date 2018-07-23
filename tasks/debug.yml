@@ -1,0 +1,35 @@
+--- # roles/singularity/tasks/debug.yml
+
+
+- debug: var=singularity_controller_user
+- debug: var=singularity_controller_home
+- debug: var=singularity_controller_resources_home
+
+- debug: var=singularity_deployment_user
+- debug: var=singularity_deployment_home
+- debug: var=singularity_deployment_resources_home
+
+#- debug: var=singularity_major
+#- debug: var=singularity_moderate_revision
+#- debug: var=singularity_minor_revision
+#- debug: var=singularity_build
+
+## Package #
+
+- debug: var=singularity_package_state
+- debug: var=singularity_package_version
+- debug: var=singularity_package_filename
+
+# Resources
+
+- debug: var=singularity_package_url
+- debug: var=singularity_checksum_url
+- debug: var=singularity_checksum_sig_url
+
+- debug: var=singularity_controller_resources_dir
+- debug: var=singularity_deployment_resources_dir
+
+# Directories
+
+- debug: var=singularity_ensure_dirs_on_remote
+- debug: var=singularity_ensure_dirs_on_local

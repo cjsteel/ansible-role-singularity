@@ -1,0 +1,24 @@
+---
+
+- name: check for executable
+  stat: path={{ singularity_install_path }}/bin/singularity
+  register: singularity_exe
+
+- name: "DEBUG value of singularity_exe"
+  debug: var=singularity_exe
+  when: singularity_debug == true
+
+- name: "DEBUG value of ansible_os_family"
+  debug: var=ansible_os_family
+  when: singularity_debug == true
+
+- name: "Run debian.yml for Debian based systems"
+  include_tasks: debian.yml
+  when: ansible_os_family == 'Debian' and
+        singularity_exe.stat.exists == false
+
+- name: "Run redhat.yml on RedHat based systems"
+  include_tasks: redhat.yml
+  when: ansible_os_family == 'RedHat' and
+        singularity_exe.stat.exists ==false
+

@@ -1,0 +1,34 @@
+--- # singularity/tasks/build-rmp-from-source.yml
+
+#./autogen.sh
+#./configure
+#make dist
+#rpmbuild -ta singularity-*.tar.gz
+#PREFIX=/opt/singularity
+#rpmbuild -ta --define="_prefix $PREFIX" --define "_sysconfdir $PREFIX/etc" --define "_defaultdocdir $PREFIX/share" singularity-*.tar.gz
+#sudo yum install ~/rpmbuild/RPMS/*/singularity-[0-9]*.rpm
+# when: ansible_distribution == 'CentOS' and ansible_distribution_version == '6.4'
+# when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 5
+
+
+- name: "clone https://github.com/singularityware/singularity.git"
+  git:
+    repo: 'https://github.com/singularityware/singularity.git'
+    dest: '{{ singularity_build_path }}'
+    version: '{{ singularity_version }}'
+
+- name: "Run autogen"
+  command: ./autogen.sh
+  args:
+    chdir: '{{ singularity_build_path }}'
+
+- name: "Run configure"
+  command: './configure'
+  args:
+    chdir: '{{ singularity_build_path }}'
+
+#- name: "rpmbuild"
+#  command: rpmbuild -ta --define="_prefix {{ singularity_rpm_prefix }}" --define "_sysconfdir {{ singularity_rpm_prefix }}/etc" --define "_defaultdocdir {{ singularity_rpm_prefix }}/share" singularity-*.tar.gz
+#    chdir: '{{ singularity_build_path }}'
+
+

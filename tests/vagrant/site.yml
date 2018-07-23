@@ -1,0 +1,41 @@
+--- # roles/singularity/tests/vagrant/site.yml
+
+# run any pre tasks on target node
+
+- hosts: all
+  become: true
+  gather_facts: false
+  pre_tasks:
+
+    - name: "Set projects variables and ensure desired python(s) installed on nodes"
+      import_tasks: pre_tasks.yml
+
+# run any other roles that need to be run before this one
+
+- hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    - upgrade_identifier : "vagrant role test"
+    - upgrade_debug : true #
+    - upgrade_all   : true # all supported operating systems
+    - upgrade_dist  : true # debian systems only
+    - upgrade_clean : true # clean the cache on all os that support this
+
+  roles:
+    - ../../../upgrade
+
+
+# Now we run the current role
+
+- hosts: all
+  remote_user: vagrant
+  become: true
+  vars:
+
+    - singularity_controller_user : '{{ fact_controller_user }}'
+    - singularity_deployment_user : 'vagrant'
+    - singularity_debug           : true
+
+  roles:
+    - ../../../

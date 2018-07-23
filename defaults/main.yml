@@ -1,0 +1,8 @@
+singularity_version: 2.5.2
+singularity_squashfs_option: true
+# Prefix
+singularity_install_path: /usr/local
+singularity_rpm_prefix: /opt/singularity
+singularity_config_path: /etc
+singularity_build_path: /tmp/singularity
+

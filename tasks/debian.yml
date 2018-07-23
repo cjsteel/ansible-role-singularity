@@ -1,0 +1,20 @@
+--- # roles/singularity/tasks/debian.yml
+
+- name: "install Debian requirements"
+  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=600 
+  with_items: 
+    - automake
+    - build-essential
+    - libarchive-dev
+    - libtool
+    - git
+
+- name: "install Debian options"
+  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=600 
+  with_items: 
+    - squashfs-tools
+  when: singularity_squashfs_option
+
+- include: "build-from-source.yml"
+
+

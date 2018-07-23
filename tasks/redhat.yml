@@ -1,0 +1,31 @@
+--- # singularity/tasks/redhat.yml
+
+# when: ansible_distribution == 'CentOS' and ansible_distribution_version == '6.4'
+# when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 5
+
+# Install Redhat requirements and options
+
+## Install Redhat options
+
+- name: "install the requirements for RedHat RPM build"
+  yum:
+    name: '{{ item }}'
+    state: latest
+  with_items:
+   - '@Development tools'
+   - squashfs-tools
+   - libarchive-devel
+# 
+# sudo yum install -y libarchive-devel
+# centos6
+# yum groupinstall 'Development Tools'
+
+# centos7
+# sudo yum group install "Development Tools"
+
+# Verification
+
+# To display Gnu gcc/c/c++ compiler version type:
+# gcc --version
+
+- include: "build-rpm-from-source.yml"
