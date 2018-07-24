@@ -66,9 +66,20 @@ cd roles/singularity
 vagrant up
 ```
 
+## Author
+
+Ryan Olson
+
+Contributing
+------------
+
+git clone git@github.com:ryanolson/ansible-singularity
+
+please see CONTRIBUTING.txt
+
 ## Contributors
 
-- [Christopher Steel](http://mcin-cnim.ca/) | [e-mail](mailto:christopher.steel@mcgill.ca)
+- [Christopher Steel](http://mcin-cnim.ca/) | [e-mail](mailto:christopher.steel@mcgill.ca) - added vagrant testing and support for RedHat
 - [John Le](http://mcin-cnim.ca/) | [e-mail](mailto:john.le@mcgill.ca)
 - [Andy Teng](http://mcin-cnim.ca/) | [e-mail](xiaoqiu.teng@mcgill.ca)
 
